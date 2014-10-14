@@ -11,10 +11,6 @@ ActiveRecord::Base.establish_connection({
 
 	})
 
-# class Food < ActiveRecord::Base
-# 	has_many(:orders)
-# 	has_many(:parties, :through => :orders)
-# end 
 
 get '/' do 
 	redirect '/foods'
@@ -31,16 +27,27 @@ get '/foods/new' do
 end
 
 post '/foods' do
-
-redirect '/foods'
+	food = Food.create(params[:foods])
+	redirect '/foods'
 end
 
 get '/foods/:id' do
-
+	@food = Food.find(params[:id])
 	erb :'foods/show'
 end
 
 get '/foods/:id/edit' do
-	
+	@food = Food.find(params[:id])
 	erb :'foods/edit'
+end
+
+patch '/foods/:id' do
+	food = Food.find(params[:id])
+	food.update(params[:foods])
+	redirect '/foods'
+end
+
+delete '/foods/:id' do
+	Food.Destroy(params[:id])
+	redirect '/foods'
 end

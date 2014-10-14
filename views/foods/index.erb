@@ -1,7 +1,7 @@
 <h1>FOOD PAGE</h1>
-
+<h2><a href="/foods/new">ADD NEW FOOD</a>
 <ul>
 <%@foods.each do |food|%>
-<li><%=food%></li>
+<ul><a href="/foods/<%=food.id%>">Food Name: <%=food.name%>Food Description: <%=food.description%>Food Price: <%=food.price%></a></ul>
 	<%end%>
 	</ul>

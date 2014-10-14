@@ -1,0 +1,10 @@
+<h1>This is food with <%=@food.id%></h1>
+<h2>The Desciption is <%=@food.description%> </h2>
+<h3>The price is <%=@food.price%></h3>
+<h4>Would you like to <a href="/foods/<%= @food.id%>/edit">EDIT IT</a>
+
+<form action="delete-food" action="/food/<%=@food.id%>" method="post">
+<input type="hidden" name="_method" value="delete"/>
+<input type="submit" value="Delete Food">
+
+</form>

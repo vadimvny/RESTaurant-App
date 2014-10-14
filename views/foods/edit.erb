@@ -1,0 +1,13 @@
+<h1>This is food with <%=@food.id%></h1>
+<h2>The Desciption is <%=@food.description%> </h2>
+<h3>The price is <%=@food.price%></h3>
+
+
+<form action="/foods/<%=@food.id%>" method="post">
+	<input type="hidden" name="_method" value="patch"/>
+	<input type="text" name="foods[name]" value="<%=@food.name%>">
+	<input type="text" name="foods[description]" value="<%=@food.description%>">
+	<input type="text" name="foods[price]" value="<%=@food.price%>">
+	<input type="submit" value = "Edit Food">
+
+</form>
