@@ -1,0 +1,8 @@
+<h1>PARTIES</h1>
+<h2><a href="/parties/new">ADD NEW PARTY</a>
+<ul>
+<% @parties.each do |party|%>
+<li><a href="/parties/<%=party.id%>"><%= party.name%> <%=party.size%></a></li>
+	<%end%>
+</ul>
+	

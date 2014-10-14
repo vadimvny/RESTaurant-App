@@ -1,0 +1,14 @@
+<h1>Edit Party<%=@party.id%></h1>
+<h2>Party Name <%=@party.name%> </h2>
+<h2>Party Size <%=@party.size%>
+<h3> Reservation Time <%=@party.reservation_time%></h3>
+
+
+<form action="/parties/<%=@party.id%>" method="post">
+	<input type="hidden" name="_method" value="patch"/>
+	<input type="text" name="parties[name]" value="<%=@party.name%>">
+	<input type="text" name="parties[size]" value="<%=@party.size%>">
+	<input type="text" name="parties[reservation_time]" value="<%=@party.reservation_time%>">
+	<input type="submit" value = "Edit Reservation">
+
+</form>
