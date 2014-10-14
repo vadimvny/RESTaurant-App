@@ -48,6 +48,6 @@ patch '/foods/:id' do
 end
 
 delete '/foods/:id' do
-	Food.Destroy(params[:id])
+	@food = Food.destroy(params[:id])
 	redirect '/foods'
 end
