@@ -2,6 +2,10 @@
 <h2><a href="/foods/new">ADD NEW FOOD</a>
 <ul>
 <%@foods.each do |food|%>
-<ul><a href="/foods/<%=food.id%>">Food Name: <%=food.name%>Food Description: <%=food.description%>Food Price: <%=food.price%></a></ul>
+<ul>
+	<li><a href="/foods/<%=food.id%>"> <%=food.name%> <%=food.description%> $<%=food.price%></a>
+	</li></ul>
 	<%end%>
 	</ul>
+
+	<a href='/'>Go Back </a>

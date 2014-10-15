@@ -1,0 +1,7 @@
+
+<h4>Would you like to <a href="/orders/<%= @order.id%>/edit">EDIT IT</a>
+
+<form action="/orders/<%=@order.id%>" method="post"/>
+<input type="hidden" name="_method" value="delete"/>
+<input type="submit" value="Delete Order">
+</form>

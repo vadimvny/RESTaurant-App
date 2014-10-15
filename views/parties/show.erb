@@ -1,6 +1,7 @@
-<h1>Party at table <%=@party.id%></h1>
+<h1>Table Number <%=@party.id%></h1>
 <h2>Party name <%=@party.name%> </h2>
 <h3>Reservation time <%=@party.reservation_time%></h3>
+<h3><a href="/orders/<%=@party_id%>/new">Add Order</a></h3>
 <h4>Would you like to <a href="/parties/<%= @party.id%>/edit">EDIT IT</a>
 
 <form action="/parties/<%=@party.id%>" method="post"/>

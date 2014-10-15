@@ -1,0 +1,13 @@
+<h1>Order <%=@order.id%></h1>
+<h2>Table Ordered <%=@order.party_id%> </h2>
+<h3>Food Ordered <%=@order.food_id%></h3>
+
+
+<form action="/orders/<%=@order.id%>" method="post">
+	<input type="hidden" name="_method" value="patch"/>
+	<input type="text" name="orders[id]" value="<%=@order.id%>"/>
+	<input type="text" name="orders[party_id]" value="<%=@order.party_id%>"/>
+	<input type="text" name="orders[food_id]" value="<%=@order.food_id%>"/>
+	<input type="submit" value = "Edit Order"/>
+
+</form>
