@@ -1,9 +1,11 @@
 <a href="/orders">SHOW ALL </a>
-<form action="/orders/:id" method ="post"/>
-<input type="hidden" name="orders[party_id]" value="<%=@order%>" />
-<input type="hidden" name="orders[food_id]" value="<%=@order%>"/>
-	<%@food.each do |food| %>
-<input type="radio"><%=food.name%><%=food.description%><%=food.price%></input> 
-<%end%>
-<p><input type="submit" value="Add Order"></p>
-</form>
+	<form action="[:party_id]" method ="post"/>
+			<%@food.each do |food| %>
+		<input type="radio"><%=food.name%><%=food.description%><%=food.price%></input> 
+				<%end%>
+			<input type="hidden" name="orders[party_id]" value = "<%  @order.party_id %>">
+				<input type="hidden" name="orders[food_id]" value ="
+			<%@order.food_id%>"> 
+			<input type="hidden" name="orders[price]" value = " <% @order.price %>">
+		<input type="submit" value="Add Order">
+	</form>

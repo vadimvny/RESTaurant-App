@@ -7,4 +7,11 @@
 <input type="hidden" name="_method" value="delete"/>
 <input type="submit" value="Delete Party">
 </form>
+<a href="/orders">SHOW ALL </a>
+	<form action="/parties/<%= @party.id %>/orders" method ="post"/>
+			<%@foods.each do |food| %>
+		<input type="radio" name = "food_id" value="<%= food.id %>"><%=food.name%><%=food.description%><%=food.price%></input> 
+				<%end%>
+		<input type="submit" value="Add Order">
+	</form>
 </center>

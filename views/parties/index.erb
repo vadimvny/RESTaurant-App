@@ -4,8 +4,7 @@
 
 <% @parties.each do |party|%>
 <div class = "party"><a href="/parties/<%=party.id%>">Party Name: <%= party.name%> Number of People: <%=party.size%></a>
-	<%end%>
-</div>
+	</div><%end%>
 </form>
-<h1>	<a href='/'>Go Back </a> </h1>
+<h1>	<button><a href='/'>Go Back </a></button> </h1>
 </center>

@@ -66,6 +66,16 @@ get '/parties/new' do
 	erb :'parties/new'
 end
 
+post '/parties/:party_id/orders' do
+	
+	Order.create({
+		party_id: params[:party_id],
+		food_id: params[:food_id]
+	})
+	binding.pry
+	redirect "/parties/#{params[:party_id]}"
+end
+
 post '/parties' do
 	party = Party.create(params[:parties])
 	orders = Order.create(params[:orders])
@@ -74,6 +84,7 @@ end
 
 get '/parties/:id' do
 	@party = Party.find(params[:id])
+	@foods = Food.all
 	erb :'parties/show'
 end
 
@@ -99,6 +110,7 @@ delete '/parties/:id' do
 	redirect '/parties'
 end
 
+
 #----------order
 get '/orders' do
 	@orders = Order.all
@@ -106,20 +118,17 @@ get '/orders' do
 	erb :'orders/index'
 end
 
-get '/orders/:id/new' do
-	@orders = Order.new
+get '/orders/new' do
 	@food = Food.all
+	@order = Order.create(params[:id])
 	#@party = Party.find(params[:id])
 	erb :'orders/new'
 end
 
-post '/orders/:id' do
-	order = Order.create(params[:order])
-	redirect '/orders'
-end
 
 get '/orders/:id' do
 	@order = Order.find(params[:id])
+	@party = @order.party
 	#@food = Food.find_by(params[:id])
 	# @party = Party.find(params[:id])
 	# @food = Food.create(params[:id])

@@ -1,11 +1,11 @@
 <h1>FOOD PAGE</h1>
-<h2><a href="/foods/new">ADD NEW FOOD</a>
+<h2><button><a href="/foods/new">ADD NEW FOOD</a></button>
 <ul>
 <%@foods.each do |food|%>
-<ul>
-	<li><a href="/foods/<%=food.id%>"> <%=food.name%> <%=food.description%> $<%=food.price%></a>
-	</li></ul>
-	<%end%>
-	</ul>
 
-<h1>	<a href='/'>Go Back </a> </h1>
+	<div class ="food"><a href="/foods/<%=food.id%>"> <%=food.name%> <%=food.description%> $<%=food.price%></a>
+	
+</div>	<%end%>
+
+
+<h1><button><a href='/'>Go Back </a> </button></h1>

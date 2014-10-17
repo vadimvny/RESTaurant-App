@@ -1,9 +1,11 @@
-<h2>Name: <%=@order.id%></h2>
-<h2>Description: <%=@order.description%> </h2>
+<h2>Name: <%=@food.name%></h2>
+<h2>Description: <%=@food.description%> </h2>
 <h2>Price: $<%=@food.price%></h2>
-	<div class="edit-button"> <a href="/foods/<%= @food.id%>/edit">EDIT IT</a>
+<center>
+	<div class="edit-button"><a href="/foods/<%=@food.id%>/edit">EDIT IT</a></div>
 
 <form action="/foods/<%=@food.id%>" method="post"/>
 <input type="hidden" name="_method" value="delete"/>
 <input type="submit" value="Delete Food">
 </form>
+</center>
