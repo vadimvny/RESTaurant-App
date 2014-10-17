@@ -1,17 +1,6 @@
 require 'bundler'
 Bundler.require
-
 require './connection'
-
-# require_relative 'models/food'
-# #require_relative 'models/party'
-# require_relative 'models/order'
-
-# class Party < ActiveRecord::Base
-# 	has_many(:orders)
-# 	has_many(:foods, :through => :orders)
-# end
-
 
 ROOT = Dir.pwd
 Dir[ROOT+"/models/*.rb"].each { |file| require file }
@@ -19,7 +8,7 @@ Dir[ROOT+"/models/*.rb"].each { |file| require file }
 #------------Foods-------------------
 
 get '/' do 
-	
+
 	erb :index
 end
 
@@ -68,6 +57,7 @@ end
 
 get '/parties' do
 	@parties = Party.all
+	@order = Order.all
 	erb :'parties/index'
 end
 
@@ -77,7 +67,8 @@ get '/parties/new' do
 end
 
 post '/parties' do
-	@party = Party.create(params[:parties])
+	party = Party.create(params[:parties])
+	orders = Order.create(params[:orders])
 	redirect '/parties'
 end
 
@@ -89,6 +80,12 @@ end
 get '/parties/:id/edit' do
 	@party = Party.find(params[:id])
 	erb :'parties/edit'
+end
+
+get 'parties/:id/orders' do
+	@party = Party.find(params[:party_id])
+	@orders = Party.find(params[:orders])
+	erb :'orders/index'
 end
 
 patch '/parties/:id' do
@@ -103,25 +100,29 @@ delete '/parties/:id' do
 end
 
 #----------order
-get '/orders/' do
+get '/orders' do
 	@orders = Order.all
+	@party = Party.all 
 	erb :'orders/index'
 end
 
-get '/orders/new' do
-	@order = Order.create(params[:id])
+get '/orders/:id/new' do
+	@orders = Order.new
 	@food = Food.all
-	@parties = Party.all
+	#@party = Party.find(params[:id])
 	erb :'orders/new'
 end
 
 post '/orders/:id' do
 	order = Order.create(params[:order])
-	party = Party.find(params[:id])
-	redirect '/orders/'
+	redirect '/orders'
 end
+
 get '/orders/:id' do
 	@order = Order.find(params[:id])
+	#@food = Food.find_by(params[:id])
+	# @party = Party.find(params[:id])
+	# @food = Food.create(params[:id])
 	erb :'orders/show'
 end
 
@@ -133,12 +134,12 @@ end
 patch '/orders/:id' do
 	order = Order.find(params[:id])
 	order.update(params[:orders])
-	redirect '/orders/'
+	redirect '/orders'
 end
 
 delete '/orders/:id' do
 	@order = Order.destroy(params[:id])
-	redirect '/orders/'
+	redirect '/orders'
 end
 
 get '/orders/receipt' do
