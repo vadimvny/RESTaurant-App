@@ -1,7 +1,11 @@
-<h1>PARTIES</h1>
-<h2><a href="/parties/new">ADD NEW PARTY</a>
-<ul>
+<center>
+<a href="/parties/new"><button>New Reservation
+</button></a>
+
 <% @parties.each do |party|%>
-<li><a href="/parties/<%=party.id%>"><%= party.name%> <%=party.size%></a></li>
+<div class = "party"><a href="/parties/<%=party.id%>">Party Name: <%= party.name%> Number of People: <%=party.size%></a>
 	<%end%>
-</ul>
+</div>
+</form>
+
+</center>
