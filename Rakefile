@@ -26,9 +26,9 @@ namespace :db do
     require_relative 'models/party'
     require_relative 'models/order'
 
-    Food.create({name:'Pizza', cuisine: 'Italian', cents: '1000'})
-    Food.create({name:'Burger', cuisine: 'American', cents: '1050'})
-    Food.create({name:'Water', cuisine: 'Polish', cents: '500'})
+    Food.create({name:'Pizza', price:'1000', description:'Italian'})
+    Food.create({name:'Burger', price:'1050',description:'American'})
+    Food.create({name:'Water', price:'500', description:'Polish'})
 
     Party.create({table_number: 4,  num_guests: 3})
     Party.create({table_number: 9,  num_guests: 2})

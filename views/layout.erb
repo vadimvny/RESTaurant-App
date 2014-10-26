@@ -10,6 +10,11 @@
 </div>
 </header>
 <body>
+ <% if current_user %>
+    <%= erb :'_navigation_for_user'%>
+  <% else %>
+    <%= erb :'_navigation_for_non_user'%>
+  <% end %>
 <%=yield%> 
 </body>
 </html>
