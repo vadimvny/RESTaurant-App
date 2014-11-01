@@ -3,7 +3,8 @@ class CreateVisitsParties < ActiveRecord::Migration
  	create_table :Parties do |t|
  		t.integer :table_number
  		t.integer :num_guests
- 		t.boolean :is_paid
+ 		t.string :name
+ 		t.boolean :is_paid, default:false
  	end
   end
 end

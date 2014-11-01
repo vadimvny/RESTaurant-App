@@ -1,4 +1,4 @@
-require 'bundler'
+ require 'bundler'
 Bundler.require
 require './connection'
 
@@ -56,6 +56,7 @@ get '/foods/new' do
 end
 
 post '/foods' do
+	food = params[:food]
 	food = Food.create(params[:foods])
 	if food.valid?
 		redirect '/foods'
@@ -71,6 +72,7 @@ get '/foods/:id' do
 end
 
 get '/foods/:id/edit' do
+	authenticate!
 	@food = Food.find(params[:id])
 	erb :'foods/edit'
 end
@@ -90,28 +92,17 @@ end
 
 get '/parties' do
 	@parties = Party.all
-	@order = Order.all
 	erb :'parties/index'
 end
 
 get '/parties/new' do
-
+	authenticate!
+	@table_number = params[:table_number]
 	erb :'parties/new'
 end
 
-post '/parties/:party_id/orders' do
-	
-	Order.create({
-		party_id: params[:party_id],
-		food_id: params[:food_id]
-	})
-	binding.pry
-	redirect "/parties/#{params[:party_id]}"
-end
-
 post '/parties' do
-	party = Party.create(params[:parties])
-	orders = Order.create(params[:orders])
+ Party.create(params[:parties])
 	redirect '/parties'
 end
 
@@ -122,19 +113,14 @@ get '/parties/:id' do
 end
 
 get '/parties/:id/edit' do
+	authenticate!
 	@party = Party.find(params[:id])
 	erb :'parties/edit'
 end
 
-get 'parties/:id/orders' do
-	@party = Party.find(params[:party_id])
-	@orders = Party.find(params[:orders])
-	erb :'orders/index'
-end
-
 patch '/parties/:id' do
 	party = Party.find(params[:id])
-	party.update(params[:parties])
+	party.update(params[:party])
 	redirect '/parties'
 end
 
@@ -145,51 +131,32 @@ end
 
 
 #----------order
-get '/orders' do
-	@orders = Order.all
-	@party = Party.all 
-	erb :'orders/index'
-end
-
-get '/orders/new' do
-	@food = Food.all
-	@order = Order.create(params[:id])
-	#@party = Party.find(params[:id])
-	erb :'orders/new'
-end
-
-
-get '/orders/:id' do
-	@order = Order.find(params[:id])
-	@party = @order.party
-	#@food = Food.find_by(params[:id])
-	# @party = Party.find(params[:id])
-	# @food = Food.create(params[:id])
-	erb :'orders/show'
+post '/parties/:id' do
+	@party = Party.find(params[:id])
+	@foods = Food.all
+	order = Order.create(params[:order])
 end
 
 get '/orders/:id/edit' do
+	authenticate!
+	@foods = Food.all
 	@order = Order.find(params[:id])
-	erb :'orders/edit'
+	erb :"orders/edit"
 end
 
 patch '/orders/:id' do
 	order = Order.find(params[:id])
-	order.update(params[:orders])
-	redirect '/orders'
+	order.update(params[:order])
+	redirect "/parties/#{order.party.id}"
 end
 
 delete '/orders/:id' do
-	@order = Order.destroy(params[:id])
-	redirect '/orders'
+	order = Order.find(params[:id])
+	Order.destroy(params[:id])
+	redirect "/parties/#{order.party.id}"
 end
 
-get '/orders/receipt' do
-	@order = Order.all
-	erb :'orders/receipt'
-end
-
-patch '/parties/:id/checkout' do
-	
-	erb :receipt
+get '/parties/:id/receipt' do
+	@party = Party.find(params[:id])
+	erb :"parties/receipt"
 end

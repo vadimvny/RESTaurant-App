@@ -1,9 +1,10 @@
 <div class = "container">
 <h1>Add Party</h1>
-
 	<form action="/parties" method ="post"/>
-		<p><input type="text" name="parties[name]" placeholder="name"/></p>
-		<p><input type="text" name="parties[size]" placeholder="size"/></p>
-		<p><input type="submit" value="Add Party"/></p>
+		Party Name: <input type="text" name="parties[name]" />
+		Party Size: <input type="text" name="parties[size]" />
+		Party Name: <input type="text" name="parties[name]"/>
+		<input type="hidden" name="party[is_paid]" value=false>
+		<input type="submit" value="Add Party"/>
 	</form>
 </div>

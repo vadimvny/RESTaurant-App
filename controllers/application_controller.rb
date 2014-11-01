@@ -16,7 +16,7 @@ class ApplicationController < Sinatra::Base
     else
       erb :not_authenticated
     end
-    erb :index
+      erb :index
   end
 
 
