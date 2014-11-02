@@ -9,42 +9,6 @@ ROOT = Dir.pwd
 Dir[ROOT+"/models/*.rb"].each { |file| require file }
 
 #------------Foods-------------------
-
-get '/' do 
-
-	erb :index
-end
-
-get '/users/new' do
-
-	erb :'users/new'
-end
-
-post '/users' do
-	user = User.new(params[:user])
-	user.password = params[:password]
-	user.save!
-	redirect '/'
-end
-
-get '/login' do
-	erb  :'sessions/login'
-	end
-
-post '/sessions' do
-	redirect '/' unless user = User.find_by(username: params[:username])
-	if user.password == params[:password]
-		session[:current_user] = user.id
-		redirect '/'
-	else
-		redirect '/login'
-	end
-end
-
-delete '/sessions' do
-	session[:current_user] = nil
-	redirect '/login'
-end
 get '/foods' do
 	@foods = Food.all
 	erb :'foods/index'

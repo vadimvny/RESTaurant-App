@@ -14,10 +14,13 @@ class ApplicationController < Sinatra::Base
     if current_user
       erb :authenticated
     else
-      erb :not_authenticated
+      erb :notauthenticated
     end
       erb :index
   end
 
+  get '/login' do
+    erb :'sessions/login'
+  end
 
 end

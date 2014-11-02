@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
-  get '/new' do
-    erb :'sessions/new'
+  get '/login' do
+    erb :'sessions/login'
   end
 
   post '/' do
@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       redirect '/'
     end
   end
-  
+
   delete '/' do
     session[:current_user] = nil
     redirect '/'

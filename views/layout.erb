@@ -6,10 +6,10 @@
 	<title>Restaurant App</title>
 <body>
  <% if current_user %>
-    <%= erb :'_navigation_for_user'%>
+    <%= erb :'authenticated'%>
   <% else %>
-    <%= erb :'_navigation_for_non_user'%>
+    <%= erb :'notauthenticated'%>
   <% end %>
-<%=yield%> 
+<%=yield%>
 </body>
 </html>
